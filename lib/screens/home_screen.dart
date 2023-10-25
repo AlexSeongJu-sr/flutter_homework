@@ -41,6 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onStopPressed() {
+    timer.cancel();
+    setState(() {
+      totalSeconds = twentyFiveMinutes;
+      isRunning = false;
+    });
+  }
+
   void onPausePressed() {
     timer.cancel();
     setState(() {
@@ -56,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
           Flexible(
@@ -76,13 +84,24 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 3,
             child: Center(
-              child: IconButton(
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
-                onPressed: isRunning ? onPausePressed : onStartPressed,
-                icon: Icon(isRunning
-                    ? Icons.pause_circle_outline
-                    : Icons.play_circle_outline),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    iconSize: 120,
+                    color: Theme.of(context).cardColor,
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
+                    icon: Icon(isRunning
+                        ? Icons.pause_circle_outline
+                        : Icons.play_circle_outline),
+                  ),
+                  IconButton(
+                    iconSize: 120,
+                    color: Theme.of(context).cardColor,
+                    onPressed: onStopPressed,
+                    icon: const Icon(Icons.stop_circle_outlined),
+                  ),
+                ],
               ),
             ),
           ),
@@ -104,7 +123,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).textTheme.headline1!.color,
+                            color:
+                                Theme.of(context).textTheme.displayLarge!.color,
                           ),
                         ),
                         Text(
@@ -112,7 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             fontSize: 58,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context).textTheme.headline1!.color,
+                            color:
+                                Theme.of(context).textTheme.displayLarge!.color,
                           ),
                         ),
                       ],
