@@ -3,10 +3,12 @@ import 'package:toonflix/widgets/button.dart';
 import 'package:toonflix/widgets/currency_card.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,12 +25,12 @@ class App extends StatelessWidget {
                 const SizedBox(
                   height: 80,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
+                      children: [
                         Text(
                           'Hey, Selena',
                           style: TextStyle(
@@ -72,9 +74,9 @@ class App extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Button(
                       text: 'Transfer',
                       bgColor: Color(0xFFF1B33B),
@@ -121,25 +123,21 @@ class App extends StatelessWidget {
                   icon: Icons.euro_rounded,
                   isInverted: false,
                 ),
-                Transform.translate(
-                  offset: const Offset(0, -20),
-                  child: const CurrencyCard(
-                    name: 'Bitcoin',
-                    code: 'BTC',
-                    amount: '9 785',
-                    icon: Icons.currency_bitcoin,
-                    isInverted: true,
-                  ),
+                const CurrencyCard(
+                  name: 'Bitcoin',
+                  code: 'BTC',
+                  amount: '9 785',
+                  icon: Icons.currency_bitcoin,
+                  isInverted: true,
+                  offset: Offset(0, -20),
                 ),
-                Transform.translate(
-                  offset: const Offset(0, -40),
-                  child: const CurrencyCard(
-                    name: 'Dollar',
-                    code: 'USD',
-                    amount: '428',
-                    icon: Icons.monetization_on_outlined,
-                    isInverted: false,
-                  ),
+                const CurrencyCard(
+                  name: 'Dollar',
+                  code: 'USD',
+                  amount: '428',
+                  icon: Icons.monetization_on_outlined,
+                  isInverted: false,
+                  offset: Offset(0, -40),
                 ),
               ],
             ),
